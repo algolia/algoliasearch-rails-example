@@ -10,6 +10,9 @@
 
 Contact.delete_all
 Contact.clear_index!
-JSON.load(File.new("#{Rails.root}/db/contacts.json")).each do |c|
-  Contact.create c
+Contact.without_auto_index do
+  JSON.load(File.new("#{Rails.root}/db/contacts.json")).each do |c|
+    Contact.create c
+  end
 end
+Contact.reindex!
