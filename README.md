@@ -38,3 +38,8 @@ Start the application
 ---------------------
 *  ```bundle exec rails server```
 *  Enjoy your ```http://localhost:3000``` examples!
+
+
+![Auto-complete sample](auto-complete.png)
+
+![Instant-search sample](instant-search.png)
