@@ -2,15 +2,14 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Algoliasearch Rails Example" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Algoliasearch Rails Example" %>">
+    <title>AlgoliaSearch Example<%= " | #{yield(:title)}" if content_for?(:title) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <%# application layout styled for Twitter Bootstrap 2.3 %>
-    <header class="navbar navbar-fixed-top">
+    <header class="navbar navbar-fixed-top navbar-inverse">
       <nav class="navbar-inner">
         <div class="container">
           <%= render 'layouts/navigation' %>

@@ -25,6 +25,11 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    algoliasearch (1.1.5)
+      curb
+    algoliasearch-rails (1.3.3)
+      algoliasearch (>= 1.1.4)
+      json (>= 1.5.1)
     arel (4.0.1)
     atomic (1.1.14)
     better_errors (1.0.1)
@@ -43,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    curb (0.8.5)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -51,6 +57,10 @@ GEM
       rails (>= 3, < 5)
     high_voltage (2.0.0)
     hike (1.2.3)
+    hogan_assets (1.6.0)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt (>= 1.3.3)
     i18n (0.6.5)
     jbuilder (1.5.2)
       activesupport (>= 3.0.0)
@@ -122,12 +132,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  algoliasearch-rails
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.2.2)
   coffee-rails (~> 4.0.0)
   figaro
   high_voltage
+  hogan_assets
   jbuilder (~> 1.2)
   jquery-rails
   quiet_assets

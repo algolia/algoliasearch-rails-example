@@ -1,1 +1,20 @@
-<h3>Home</h3>
+<h1>Algolia Search example app</h1>
+
+<h3>Installation</h3>
+
+<ol>
+  <li><code>bundle install</code></li>
+  <li><code>bundle exec rake db:migrate</code></li>
+  <li>Create your <code>config/application.yml</code> based on <code>config/application.example.yml</code></li>
+  <li><code>bundle exec rake db:seed</code></li>
+  <li><code>bundle exec rails server</code></li>
+  <li>Enjoy your <code>http://localhost:3000</code>!</li>
+</ol>
+
+
+<h3>Examples</h3>
+
+<ul>
+  <li><%= link_to "Auto-complete example", page_path('auto-complete') %></li>
+  <li><%= link_to "Instant-search example", page_path('instant-search') %></li>
+</ul>

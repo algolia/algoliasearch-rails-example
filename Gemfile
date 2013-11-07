@@ -12,6 +12,10 @@ gem 'bootstrap-sass', '~> 2.3.2.2'
 gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form'
+
+gem 'algoliasearch-rails'
+gem 'hogan_assets'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

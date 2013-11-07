@@ -1,0 +1,47 @@
+<% content_for :title do %>Auto-complete<% end %>
+
+<h1>Auto-complete example</h1>
+
+<div class="well">
+  A modern auto-complete field based on <code>typeahead.js</code> + <code>Hogan</code> and <code>AlgoliaSearch JS Client</code> example.
+</div>
+
+<div class="m-center">
+  <input name="email" placeholder="John Doe" id="user_email" />
+  <div class="search-terms">
+    Try
+    <a href="javascript:void(0)">John</a>,
+    <a href="javascript:void(0)">Jonn</a>,
+    <a href="javascript:void(0)">s row</a>,
+    <a href="javascript:void(0)">roeb</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var client = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_SEARCH_ONLY_API_KEY'] %>');
+    $('input#user_email').typeahead({
+      name: 'emails',
+      remote: client.initIndex('<%= Contact.index_name %>').getTypeaheadTransport(), // see our [pull-request](https://github.com/twitter/typeahead.js/pull/473) to accept custom transports
+      engine: Hogan,
+      template: '<div class="hit-auto-complete">' +
+        '<div class="name">{{{_highlightResult.name.value}}}</div>' +
+        '<div class="email">{{{_highlightResult.email.value}}}</div>' +
+        '<div class="company">{{{_highlightResult.company.value}}}</div>' +
+      '</div>',
+      valueKey: 'email'
+    }).on('change', function(e) {
+      console.log("onchange: " + $('input#user_email').val());
+    }).on('keypress', function(e) {
+      if (e.which == 13) {
+        console.log("onsubmit: " + $('input#user_email').val());
+      }
+    }).on('typeahead:selected', function(e) {
+      console.log("onselected: " + $('input#user_email').val());
+    });
+
+    $('.search-terms a').click(function(e) {
+      $("input#user_email").typeahead('setQuery', $(this).text()).focus();
+    })
+  });
+</script>

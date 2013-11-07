@@ -1,0 +1,70 @@
+<% content_for :title do %>Instant-search<% end %>
+
+<h1>Instant-search example</h1>
+
+<div class="well">
+  A <code>Google-like</code> instant-search based on <code>AlgoliaSearch JS Client</code> + <code>Hogan</code> example.
+</div>
+
+<div class="m-center">
+  <input name="email" placeholder="Search" id="user_email" autocomplete="off" spellcheck="false" class="instant-search-form" />
+  <div class="search-terms">
+    Try
+    <a href="javascript:void(0)">John</a>,
+    <a href="javascript:void(0)">Jonn</a>,
+    <a href="javascript:void(0)">s row</a>,
+    <a href="javascript:void(0)">roeb</a>
+  </div>
+</div>
+
+<div id="hits">
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var index = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_SEARCH_ONLY_API_KEY'] %>').initIndex('<%= Contact.index_name %>');
+
+    var hitTemplate = '<div class="hit-instant-search">' +
+      '<div class="company">{{{_highlightResult.company.value}}}</div>' +
+      '<div class="name">{{{_highlightResult.name.value}}}</div>' +
+      '<div class="created_at">{{{created_at}}}</div>' +
+      '<div class="email"><a href="mailto:{{{_highlightResult.email.value}}}">{{{_highlightResult.email.value}}}</a></div>' +
+    '</div>';
+    var hitTemplateCompiled = Hogan.compile(hitTemplate);
+
+    function search(v) {
+      index.search(v, function(success, content) {
+        if (!success) {
+          console.log("Error: " + JSON.stringify(content));
+          return;
+        }
+        $('#hits').html('');
+        $('#hits').append('<div class="processing_time pull-right">Processing time: ' + content.processingTimeMS + 'ms</div>');
+        $('#hits').append('<div class="nb_hits">Nb hits: ' + content.nbHits + '</div>');
+        for (var i = 0; i < content.hits.length; ++i) {
+          $('#hits').append(hitTemplateCompiled.render(content.hits[i]));
+        }
+      }, { hitsPerPage: 20 });
+    }
+
+    $('input#user_email').change(function() {
+      search($(this).val());
+    }).keyup(function(e) {
+      if (e.which == 27) {
+        $(this).val('').change();
+        return;
+      }
+      search($(this).val());
+    }).focus(function(){
+      $(this).attr("placeholder", "");
+    }).blur(function(){
+      $(this).attr("placeholder", "Search");
+    }).focus();
+
+    $('.search-terms a').click(function(e) {
+      $("input#user_email").val($(this).text()).change().focus();
+    });
+
+    search('');
+  });
+</script>
