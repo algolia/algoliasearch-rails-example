@@ -20,16 +20,19 @@
 <script type="text/javascript">
   $(document).ready(function() {
     var client = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_SEARCH_ONLY_API_KEY'] %>');
-    $('input#user_email').typeahead({
-      name: 'emails',
-      remote: client.initIndex('<%= Contact.index_name %>').getTypeaheadTransport(), // see our [pull-request](https://github.com/twitter/typeahead.js/pull/473) to accept custom transports
-      engine: Hogan,
-      template: '<div class="hit-auto-complete">' +
+    var template = Hogan.compile('<div class="hit-auto-complete">' +
         '<div class="name">{{{_highlightResult.name.value}}}</div>' +
         '<div class="email">{{{_highlightResult.email.value}}}</div>' +
         '<div class="company">{{{_highlightResult.company.value}}}</div>' +
-      '</div>',
-      valueKey: 'email'
+      '</div>');
+    $('input#user_email').typeahead(null, {
+      source: client.initIndex('<%= Contact.index_name %>').ttAdapter(),
+      displayKey: 'email',
+      templates: {
+        suggestion: function(hit) {
+          return template.render(hit);
+        }
+      }
     }).on('change', function(e) {
       console.log("onchange: " + $('input#user_email').val());
     }).on('keypress', function(e) {

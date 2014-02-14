@@ -16,5 +16,5 @@
 //= require bootstrap
 //= require_tree .
 //= require algolia/algoliasearch.min
-//= require algolia/typeahead.min
+//= require algolia/typeahead.jquery
 //= require hogan
