@@ -15,7 +15,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'kaminari'
 
-gem 'algoliasearch-rails', path: '/Users/redox/dev/Algolia/algoliasearch-rails'
+gem 'algoliasearch-rails'
 gem 'hogan_assets'
 
 group :development do
