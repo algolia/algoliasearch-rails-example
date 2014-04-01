@@ -31,6 +31,7 @@ Installation
 
 Populate your DB and start indexing
 --------------------------------------
+* ```rails generate figaro:install```
 *  Create your ```config/application.yml``` based on ```config/application.example.yml``` with your [Algolia](http://www.algolia.com) credentials
 *  ```bundle exec rake db:seed```
 
