@@ -27,11 +27,11 @@ Installation
 
 * ```git clone https://github.com/algolia/algoliasearch-rails-example.git```
 *  ```bundle install```
-*  ```bundle exec rake db:migrate```
 
 Populate your DB and start indexing
 --------------------------------------
 *  Create your ```config/application.yml``` based on ```config/application.example.yml``` with your [Algolia](http://www.algolia.com) credentials
+*  ```bundle exec rake db:migrate```
 *  ```bundle exec rake db:seed```
 
 Start the application
