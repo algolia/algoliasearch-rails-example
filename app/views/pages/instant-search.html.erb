@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var index = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_SEARCH_ONLY_API_KEY'] %>').initIndex('<%= Contact.index_name %>');
+    var index = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_API_KEY_SEARCH'] %>').initIndex('<%= Contact.index_name %>');
 
     var hitTemplate = '<div class="hit-instant-search">' +
       '<div class="company">{{{_highlightResult.company.value}}}</div>' +

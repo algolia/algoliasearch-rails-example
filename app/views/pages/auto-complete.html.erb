@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var client = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_SEARCH_ONLY_API_KEY'] %>');
+    var client = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_API_KEY_SEARCH'] %>');
     var template = Hogan.compile('<div class="hit-auto-complete">' +
         '<div class="name">{{{_highlightResult.name.value}}}</div>' +
         '<div class="email">{{{_highlightResult.email.value}}}</div>' +
