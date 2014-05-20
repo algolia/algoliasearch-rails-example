@@ -12,7 +12,7 @@ class CreateContacts < ActiveRecord::Migration
       t.string :phone
       t.string :fax
       t.string :web
-      t.string :followers
+      t.integer :followers, :default => 0
       t.string :name
       t.string :note
 

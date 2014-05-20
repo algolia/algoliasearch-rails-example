@@ -17,6 +17,16 @@ ActiveRecord::Schema.define(version: 20131107103314) do
     t.string   "name"
     t.string   "email"
     t.string   "company"
+    t.string   "address"
+    t.string   "city"
+    t.string   "county"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "web"
+    t.integer  "followers",  default: 0
+    t.string   "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
