@@ -17,7 +17,7 @@ gem 'simple_form'
 gem 'will_paginate'
 gem 'kaminari'
 
-gem 'algoliasearch-rails', '~> 1.12.0'
+gem 'algoliasearch-rails', '~> 1.13'
 gem 'hogan_assets'
 
 group :development do
