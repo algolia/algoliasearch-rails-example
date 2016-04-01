@@ -3,48 +3,49 @@
 <h1>Auto-complete example</h1>
 
 <div class="well">
-  A modern auto-complete field based on <code>typeahead.js</code> + <code>Hogan</code> and <code>AlgoliaSearch JS Client</code> example.
+  A modern auto-complete field based on <a href="https://github.com/algolia/autocomplete.js"><code>autocomplete.js</code></a> + <code>Hogan</code> and <code>AlgoliaSearch JS Client</code> example.
 </div>
 
-<div class="m-center">
-  <input name="email" placeholder="Name, email or company" id="user_email" />
-  <div class="search-terms">
-    Try
-    <a href="javascript:void(0)">John</a>,
-    <a href="javascript:void(0)">Jonn</a>,
-    <a href="javascript:void(0)">s row</a>,
-    <a href="javascript:void(0)">roeb</a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <input name="email" placeholder="Name, email or company" id="q" class="form-control" />
+
+      <div class="search-terms">
+        Try
+        <a href="javascript:void(0)">John</a>,
+        <a href="javascript:void(0)">Jonn</a>,
+        <a href="javascript:void(0)">roebekah</a>
+      </div>
+    </div>
   </div>
 </div>
 
+<script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-    var client = new AlgoliaSearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_API_KEY_SEARCH'] %>');
+    var client = algoliasearch('<%= ENV['ALGOLIASEARCH_APPLICATION_ID'] %>', '<%= ENV['ALGOLIASEARCH_API_KEY_SEARCH'] %>');
     var template = Hogan.compile('<div class="hit-auto-complete">' +
         '<div class="name">{{{_highlightResult.name.value}}}</div>' +
         '<div class="email">{{{_highlightResult.email.value}}}</div>' +
         '<div class="company">{{{_highlightResult.company.value}}}</div>' +
       '</div>');
-    $('input#user_email').typeahead(null, {
-      source: client.initIndex('<%= Contact.index_name %>').ttAdapter(),
+    var ac = autocomplete('#q', { hint: true }, {
+      source: autocomplete.sources.hits(client.initIndex('<%= Contact.index_name %>'), { hitsPerPage: 5 }),
       displayKey: 'email',
       templates: {
         suggestion: function(hit) {
           return template.render(hit);
         }
       }
-    }).on('change', function(e) {
-      console.log("onchange: " + $('input#user_email').val());
-    }).on('keypress', function(e) {
-      if (e.which == 13) {
-        console.log("onsubmit: " + $('input#user_email').val());
-      }
-    }).on('typeahead:selected', function(e) {
-      console.log("onselected: " + $('input#user_email').val());
+    }).on('autocomplete:selected', function(event, suggestion) {
+      console.log('onselected', suggestion);
     });
 
     $('.search-terms a').click(function(e) {
-      $("input#user_email").typeahead('setQuery', $(this).text()).focus();
+      ac.autocomplete.setVal($(this).text());
+      ac.autocomplete.open();
+      ac.focus();
     })
   });
 </script>

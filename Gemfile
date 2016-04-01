@@ -1,23 +1,23 @@
 source 'https://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.3.0'
 
 gem 'rails', '~> 4.2.0'
 gem 'sqlite3'
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'jbuilder'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form'
 gem 'will_paginate'
 gem 'kaminari'
 
-gem 'algoliasearch-rails', '~> 1.13'
+gem 'algoliasearch-rails', '~> 1.14.0'
 gem 'hogan_assets'
 
 group :development do

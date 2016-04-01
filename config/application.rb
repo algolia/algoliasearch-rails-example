@@ -26,5 +26,7 @@ module AlgoliasearchRailsExample
     # config.i18n.default_locale = :de
 
     config.active_job.queue_adapter = :inline
+
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

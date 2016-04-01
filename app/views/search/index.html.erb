@@ -6,10 +6,14 @@
   A results page generated through your backend and based on <code>AlgoliaSearch Ruby Client</code> + <code>will_paginate</code>/<code>kaminari</code>.
 </div>
 
-<div class="m-center">
-  <%= form_for Contact.new, url: '/backend-search', method: 'get' do |f| %>
-    <%= text_field :contact, :q, class: "instant-search-form" %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for Contact.new, url: '/backend-search', method: 'get' do |f| %>
+        <%= text_field :contact, :q, class: "form-control" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <% if @hits %>

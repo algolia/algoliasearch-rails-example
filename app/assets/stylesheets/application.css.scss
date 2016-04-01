@@ -12,23 +12,17 @@
  *= require_tree .
  */
 
-input {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
 .content {
   margin-top: 30px;
 }
 
-.m-center {
-  margin: 0px auto;
-  width: 500px;
+.search-terms {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 .hit-auto-complete {
-
   em {
     font-weight: bold;
     font-style: normal;
@@ -43,21 +37,6 @@ input {
     font-size: 0.8em;
     color: #999;
   }
-
-}
-
-.instant-search-form {
-  width: 500px !important; height: 70px !important; padding: 0px !important; margin: 0px !important; background: white; font-size: 24px !important;
-  padding-left: 5px !important; border: 2px solid #18bc9c !important;
-}
-
-#hits {
-  margin-top: 30px;
-}
-
-.search-terms {
-  margin-top: 10px;
-  margin-left: 20px;
 }
 
 .hit-instant-search {
@@ -86,11 +65,30 @@ input {
   }
 }
 
-.twitter-typeahead, .tt-input, .tt-hint { width: 500px !important; height: 50px !important; padding: 0px !important; margin: 0px !important; background: white; font-size: 24px !important; }
-.twitter-typeahead { padding-left: 5px !important; border: 2px solid #18bc9c !important; }
-.tt-input { -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-.tt-hint { margin: 0px !important; padding: 0px !important; padding-left: 5px !important; color: #AAA !important; border: 0px !important; }
-.tt-dropdown-menu { width: 100%; margin-left: -2px; padding: 8px 0; background-color: #fff; border: 2px solid #18bc9c; border-top: 0px; -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2); -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2); box-shadow: 0 5px 10px rgba(0,0,0,.2); }
-.tt-suggestion { text-align: left; padding: 5px 10px; font-size: 16px; }
-.tt-suggestion.tt-cursor { color: #fff; background-color: #18bc9c; }
-.tt-suggestion em { font-weight: bold; font-style: normal; }
+.algolia-autocomplete {
+  width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #B2D7FF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
